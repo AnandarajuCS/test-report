@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install jest-junit --save-dev
+  pre_build:
+    commands:
+      - echo 'prebuild'
+  build:
+    commands:
+      - |
+        codebuild-tests-run \
+         --test-command 'npx jest --runInBand --coverage' \
+         --files-search "codebuild-glob-search '**/_tests_/**/*.test.js'" \
+         --sharding-strategy 'equal-distribution'
+
+  post_build:
+    commands:
+      - codebuild-glob-search '**/*.xml'  
+      - echo "Running post-build steps..."
+      - echo "Build completed on `date`"
+
+reports:
+  test-reports:
+    files:
+      - '**/junit.xml'               
+    base-directory: .
+    discard-paths: yes           
+    file-format: JUNITXML 
