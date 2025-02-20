@@ -11,7 +11,7 @@ describe('Test Suite 1', () => {
     expect(true).toBe(true);
   });
 
-  test('Test 4', () => {
+  test('Test 004', () => {
     expect(true).toBe(true);
   });
 
