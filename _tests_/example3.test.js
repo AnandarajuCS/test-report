@@ -7,7 +7,7 @@ describe('Test Suite 3', () => {
     expect(true).toBe(true);
   });
 
-  test('Test 6', () => {
+  test('Test --6', () => {
     expect(true).toBe(true);
   });
 
